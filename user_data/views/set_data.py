@@ -1,14 +1,13 @@
+import json
 import os
 
-from flask import request, jsonify, send_file
+from flask import request, jsonify
 from flask_restful import Resource
-from werkzeug.utils import secure_filename
 
 from app import app
-import json
 
 
-class UserData(Resource):
+class SetUserData(Resource):
     def post(self):
         username = request.args.get('username')
         name = request.form['name']
