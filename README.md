@@ -13,4 +13,4 @@ Note2: For all endpoints you need to add username as a params in the end of each
 
 * For the fourth api, user can create or update global data json file.notice that for this api there is no need to give username as parameter.Json file will create if not exists and if data with same name exists value will replace.The endpoint for this api is: /api/setGlobalData 
 
-*Fifth api returns given user data in addition to global data.values for similar names between user data and global data will replace with user value. endpoint is accessable via: /api/getUserData
+* Fifth api returns given user data in addition to global data.values for similar names between user data and global data will replace with user value. endpoint is accessable via: /api/getUserData
