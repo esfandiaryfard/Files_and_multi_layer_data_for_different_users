@@ -10,3 +10,5 @@ Note2: For all endpoints you need to add username as a params in the end of each
 * For the second api, user can downlaod a file from users folder.filename should give as params in addition to username. The endpoint for download is: /api/download 
 
 * For the third api, user can create and update a json data file.If json already exist in given username folder json will update if not a json file will create in user's folder. Notice that forms should have items 'name' and 'value' and if name already exists in json file value will replace with new item.The endpoint for set user data is: /api/setUserData 
+
+* For the fourth api, user can create or update global data json file.notice that for this api there is no need to give username as parameter.Json file will create if not exists and if data with same name exists value will replace.The endpoint for this api is: /api/setGlobalData 
