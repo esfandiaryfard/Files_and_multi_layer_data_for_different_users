@@ -22,17 +22,21 @@ class UserData(Resource):
             with data_file as df:
                 data = json.load(df)
 
-            data_item = []
+            names = []
             for items in data:
-                if items['name'] == name:
-                    items['value'] = value
-                    data_item.append(items)
+                names.append(items['name'])
 
-            data.extend(data_item)
-            print(data)
+            if name in names:
+                data[names.index(name)]['value'] = value
+            else:
+                data.append(request.form.to_dict(flat=True))
+
         except FileNotFoundError:
             data.append(request.form)
 
         with open(os.path.join(username,'data.json'), 'w') as f:
-            f.write(json.dumps(data, indent=2))        # path = os.path.join(username, filename)
-        # return send_file(path, as_attachment=True)
+            f.write(json.dumps(data, indent=2))
+
+        resp = jsonify([{'message': 'Json file updated successfully'}, data])
+        resp.status_code = 200
+        return resp
