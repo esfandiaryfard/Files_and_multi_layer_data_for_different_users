@@ -13,6 +13,8 @@ app.config['app_path'] = app_path
 
 from download.views import Download
 from upload.views import Upload
+from user_data.views import UserData
 
 api.add_resource(Upload, '/api/upload')
 api.add_resource(Download, '/api/download')
+api.add_resource(UserData, '/api/setUserData')
