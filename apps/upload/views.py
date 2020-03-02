@@ -1,13 +1,12 @@
 import os
 
 from flask import request, jsonify
-from flask_restful import Resource
 from werkzeug.utils import secure_filename
-
+import connexion
 from app import app
 
 
-class Upload(Resource):
+class Upload(connexion.App):
     def post(self):
         # check if the post request has the file part
         if 'file' not in request.files:
