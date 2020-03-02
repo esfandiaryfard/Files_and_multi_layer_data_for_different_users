@@ -1,11 +1,14 @@
 import os
 
+import connexion
 from flask import request, send_file
-from flask_restful import Resource
 
 
-class Download(Resource):
-    def get(self):
+class Download(connexion.App):
+    def __init__(self):
+        connexion.App.__init__(self, 'download')
+
+    def get(*args, **kwargs):
         username = request.args.get('username')
         filename = request.args.get('filename')
         path = os.path.join(username, filename)

@@ -7,7 +7,11 @@ from app import app
 
 
 class Upload(connexion.App):
-    def post(self):
+    def __init__(self):
+        connexion.App.__init__(self, 'upload')
+
+    def post(*args, **kwargs):
+        print("I am hete")
         # check if the post request has the file part
         if 'file' not in request.files:
             resp = jsonify({'message': 'No file part in the request'})
@@ -25,11 +29,11 @@ class Upload(connexion.App):
         username = request.args.get('username')
 
         # Create a folder for give username if not exists
-        if not os.path.exists(os.path.join(app.config['app_path'], username)):
-            os.makedirs(os.path.join(app.config['app_path'], username))
+        if not os.path.exists(os.path.join(app.path, username)):
+            os.makedirs(os.path.join(app.path, username))
 
         file.save(os.path.join(
-            app.config['app_path'],
+            app.path,
             username,
             filename
         )

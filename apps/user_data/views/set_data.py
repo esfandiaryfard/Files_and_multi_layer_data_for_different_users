@@ -1,20 +1,23 @@
 import json
 import os
 
+import connexion
 from flask import request, jsonify
-from flask_restful import Resource
 
 from app import app
 
 
-class SetUserData(Resource):
-    def post(self):
+class SetUserData(connexion.App):
+    def __init__(self):
+        connexion.App.__init__(self, 'set_user_data')
+
+    def post(*args, **kwargs):
         username = request.args.get('username')
         name = request.form['name']
         value = request.form['value']
         data = []
-        if not os.path.exists(os.path.join(app.config['app_path'], username)):
-            os.makedirs(os.path.join(app.config['app_path'], username))
+        if not os.path.exists(os.path.join(app.path, username)):
+            os.makedirs(os.path.join(app.path, username))
 
         try:
             data_file = open(os.path.join(username, 'data.json'))

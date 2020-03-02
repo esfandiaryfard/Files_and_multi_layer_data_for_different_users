@@ -1,14 +1,17 @@
 import json
 import os
 
+import connexion
 from flask import request, jsonify
-from flask_restful import Resource
 
 from app import app
 
 
-class GetUserData(Resource):
-    def get(self):
+class GetUserData(connexion.App):
+    def __init__(self):
+        connexion.App.__init__(self, 'get_user_data')
+
+    def get(*args, **kwargs):
         username = request.args.get('username')
         if username is None:
             resp = jsonify(
@@ -26,7 +29,7 @@ class GetUserData(Resource):
             data = json.load(gd)
 
         # if user folder not exists just global data returns
-        if not os.path.exists(os.path.join(app.config['app_path'], username)):
+        if not os.path.exists(os.path.join(app.path, username)):
             resp = jsonify(data)
             resp.status_code = 200
             return resp
@@ -60,7 +63,6 @@ class GetUserData(Resource):
             resp = jsonify(data)
             resp.status_code = 200
             return resp
-
 
         resp = jsonify(data)
         resp.status_code = 200

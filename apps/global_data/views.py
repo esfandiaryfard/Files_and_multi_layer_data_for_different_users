@@ -1,11 +1,14 @@
 import json
 
+import connexion
 from flask import request, jsonify
-from flask_restful import Resource
 
 
-class GlobalData(Resource):
-    def post(self):
+class GlobalData(connexion.App):
+    def __init__(self):
+        connexion.App.__init__(self, 'global_data')
+
+    def post(*args, **kwargs):
         name = request.form['name']
         value = request.form['value']
         data = []

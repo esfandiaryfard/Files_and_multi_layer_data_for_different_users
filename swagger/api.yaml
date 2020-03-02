@@ -11,18 +11,107 @@ produces:
 # Paths supported by the server application
 paths:
   /api/upload:
-    get:
-      operationId: "apps.upload.views.Upload"
+    post:
+      operationId: "apps.upload.views.Upload.post"
       tags:
         - "Upload"
       summary: "The upload api"
+
       parameters:
         - in: formData
-          name: upfile
+          name: file
           type: file
           description: "Upload files to users folders"
+        - in: query
+          name: username
+          type: string
+          required: true
+
+      responses:
+        201:
+          description: "File successfully uploaded!"
+        400:
+          description: "No file part in the request"
+
+  /api/download:
+    get:
+      operationId: "apps.download.views.Download.get"
+      tags:
+        - "Download"
+      summary: "The download api"
+
+      parameters:
+        - in: query
+          name: username
+          type: string
+          required: true
+
+        - in: query
+          name: filename
+          type: string
+          required: true
 
       responses:
         200:
-          description: "Successful upload!"
+          description: ""
+
+  /api/setUserData:
+    post:
+      operationId: "apps.user_data.views.set_data.SetUserData.post"
+      tags:
+        - "SetUserData"
+      summary: "Write input data into json files in users folder"
+
+      parameters:
+        - in: query
+          name: username
+          type: string
+          required: true
+
+        - in: formData
+          name: name
+          type: string
+        - in: formData
+          name: value
+          type: string
+
+      responses:
+        200:
+          description: "Json file updated successfully"
+
+  /api/setGlobalData:
+    post:
+      operationId: "apps.global_data.views.GlobalData.post"
+      tags:
+        - "SetGlobalData"
+      summary: "Write input data into json files in global_data file"
+
+      parameters:
+        - in: formData
+          name: name
+          type: string
+        - in: formData
+          name: value
+          type: string
+
+      responses:
+        200:
+          description: "Json file updated successfully"
+
+  /api/getUserData:
+    get:
+      operationId: "apps.user_data.views.get_data.GetUserData.get"
+      tags:
+        - "getUserData"
+      summary: "Show user data from both user data and global json file"
+
+      parameters:
+        - in: query
+          name: username
+          type: string
+          required: true
+
+      responses:
+        200:
+          description: ""
 
