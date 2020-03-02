@@ -2,6 +2,7 @@
 This is a project for a job interview. To implement this project I used python and flask upon request.
 
 Note1: Make sure you enter the path of your project inside app.py
+
 Note2: For all endpoints you need to add username as a params in the end of each endpoint like : ?username=user1
 
 * For the first api, user can upload a file into given username folder.If the folder doese not exist the program create one. The endpoint for upload is: api/upload.
