@@ -36,9 +36,24 @@ class GetUserData(Resource):
             with user_data as ud:
                 json_data = json.load(ud)
 
-            # combine user data and global data
+            # get names of user data jsons
+            data_names = []
             for items in json_data:
-                data.append(items)
+                data_names.append(items['name'])
+
+            # get names of global data jsons
+            global_names = []
+            for items in data:
+                global_names.append(items['name'])
+
+            # if data with the same name exists in both global and user data
+            # return user data
+            for items in data_names:
+                if items in global_names:
+                    data[global_names.index(items)]['value'] = \
+                                    json_data[data_names.index(items)]['value']
+                else:
+                    data.append(json_data[data_names.index(items)])
 
         # if user had no json data jusr global data returns
         except FileNotFoundError:

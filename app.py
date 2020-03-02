@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 
-app_path = 'E:/fmdfdu/api'
+app_path = '/home/annabelle/Files_and_multi_layer_data_for_different_users/'
 
 app = Flask(__name__)
 api = Api(app)
