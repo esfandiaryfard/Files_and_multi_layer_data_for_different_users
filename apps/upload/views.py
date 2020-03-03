@@ -11,7 +11,6 @@ class Upload(connexion.App):
         connexion.App.__init__(self, 'upload')
 
     def post(*args, **kwargs):
-        print("I am hete")
         # check if the post request has the file part
         if 'file' not in request.files:
             resp = jsonify({'message': 'No file part in the request'})
