@@ -5,6 +5,8 @@ Note1: Make sure you enter the path of your project inside app.py
 
 Note2: For all endpoints you need to add username as a params in the end of each endpoint like : ?username=user1
 
+Note3 : go to /ui to access api via swagger ui
+
 * For the first api, user can upload a file into given username folder.If the folder doese not exist the program create one. The endpoint for upload is: api/upload.
 
 * For the second api, user can downlaod a file from users folder.filename should give as params in addition to username. The endpoint for download is: /api/download 
